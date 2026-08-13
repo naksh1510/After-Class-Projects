@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank App</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-size: 16px;
+            outline: none;
+            width: 200px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 120px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #2d3136;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .balance {
+            font-size: 20px;
+        }
+
+        /* Classes provided in your CSS block */
+        .text1 {
+            color: red;
+            text-decoration: overline;
+        }
+
+        .text2 {
+            color: #71ffb0;
+            text-decoration: line-through;
+        }
+
+        .text3 {
+            color: rgb(70, 98, 120);
+            text-decoration: underline;
+        }
+
+        .text4 {
+            color: rgba(0, 0, 0, 0.4);
+            text-decoration: underline overline;
+        }
+
+        .p1 {
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .p2 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body class="p1">
+
+    <h2>Bank App</h2>
+
+    <div class="input-container">
+        <label for="amount">Enter Transaction Amount</label>
+        <input type="number" id="amount" />
+    </div>
+
+    <div class="button-container">
+        <button type="button">Credit</button>
+        <button type="button">Debit</button>
+    </div>
+
+    <p class="balance">Your Account Balance is : £0.00</p>
+
+</body>
+<script src="script.js"></script>
+</html>

@@ -6,105 +6,233 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank App</title>
     <style>
+        :root {
+            --bg-color: #f7f9fc;
+            --card-bg: #ffffff;
+            --text-dark: #1f2a44;
+            --text-gray: #7d8ea6;
+            --teal: #14b8a6;
+            --teal-hover: #0d9488;
+            --red: #ef4444;
+            --red-hover: #dc2626;
+            --input-border: #cbd5e1;
+            --input-focus: #1d4ed8;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
         body {
-            font-family: "Times New Roman", Times, serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-family);
+            margin: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding-top: 40px;
+            min-height: 100vh;
         }
 
-        h2 {
-            font-size: 24px;
-            margin-bottom: 30px;
+        #app-container {
+            width: 100%;
+            max-width: 600px;
+            /* Adjust max width as needed */
+            text-align: center;
         }
 
-        .input-container {
+        h1.app-title {
+            color: var(--text-dark);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .input-group {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 18px;
-            margin-bottom: 25px;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
         }
 
-        input[type="number"],
-        input[type="text"] {
-            border: 1px solid #333;
-            border-radius: 6px;
-            padding: 5px 10px;
-            font-size: 16px;
+        .input-group label {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .input-field {
+            padding: 0.75rem 1.2rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: 2px solid var(--input-border);
             outline: none;
-            width: 200px;
+            transition: border-color 0.2s;
+            width: 180px;
         }
 
-        .button-container {
+        .input-field:focus {
+            border-color: var(--input-focus);
+        }
+
+        .action-group {
             display: flex;
-            gap: 120px;
-            margin-bottom: 30px;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
 
-        button {
-            background-color: #2d3136;
-            color: white;
+        .btn {
+            padding: 0.8rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
             border: none;
-            border-radius: 6px;
-            padding: 10px 25px;
-            font-size: 18px;
             cursor: pointer;
-            font-family: Arial, Helvetica, sans-serif;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            color: white;
+            font-weight: 600;
         }
 
-        .balance {
-            font-size: 20px;
+        .btn:active {
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Classes provided in your CSS block */
-        .text1 {
-            color: red;
-            text-decoration: overline;
+        .btn-credit {
+            background-color: var(--teal);
         }
 
-        .text2 {
-            color: #71ffb0;
-            text-decoration: line-through;
+        .btn-credit:hover {
+            background-color: var(--teal-hover);
         }
 
-        .text3 {
-            color: rgb(70, 98, 120);
-            text-decoration: underline;
+        .btn-debit {
+            background-color: var(--red);
         }
 
-        .text4 {
-            color: rgba(0, 0, 0, 0.4);
-            text-decoration: underline overline;
+        .btn-debit:hover {
+            background-color: var(--red-hover);
         }
 
-        .p1 {
-            font-family: "Times New Roman", Times, serif;
+        .balance-display {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            font-weight: 500;
         }
 
-        .p2 {
-            font-family: Arial, Helvetica, sans-serif;
+        .balance-amount {
+            color: var(--text-dark);
+            font-weight: 700;
         }
     </style>
 </head>
 
-<body class="p1">
+<body>
 
-    <h2>Bank App</h2>
+    <div id="app-container">
+        <h1 class="app-title">Bank App</h1>
 
-    <div class="input-container">
-        <label for="amount">Enter Transaction Amount</label>
-        <input type="number" id="amount" />
+        <div class="card">
+            <div class="input-group">
+                <label for="amount">Enter Transaction Amount</label>
+                <input type="number" id="amount" class="input-field" placeholder="e.g., 500" min="0" step="1">
+            </div>
+
+            <div class="action-group">
+                <button id="creditBtn" class="btn btn-credit">Credit</button>
+                <button id="debitBtn" class="btn btn-debit">Debit</button>
+            </div>
+
+            <div class="balance-display">
+                Your Account Balance is : <span id="balanceText" class="balance-amount">Rs. 0</span>
+            </div>
+        </div>
     </div>
 
-    <div class="button-container">
-        <button type="button">Credit</button>
-        <button type="button">Debit</button>
-    </div>
+    <script>
+        // State
+        let accountBalance = 0;
 
-    <p class="balance">Your Account Balance is : £0.00</p>
+        // DOM elements
+        const amountInput = document.getElementById('amount');
+        const creditBtn = document.getElementById('creditBtn');
+        const debitBtn = document.getElementById('debitBtn');
+        const balanceText = document.getElementById('balanceText');
 
+        // Functions
+        function updateBalanceDisplay() {
+            // Check if balance is an integer, if not, format it to 2 decimal places. 
+            // In a real bank app, you would always store as cents (integers).
+            let displayBalance = accountBalance;
+            if (!Number.isInteger(accountBalance)) {
+                displayBalance = accountBalance.toFixed(2);
+            }
+            balanceText.innerText = `Rs. ${displayBalance}`;
+        }
+
+        function handleTransaction(type) {
+            // 1. Get and validate input
+            const amountStr = amountInput.value.trim();
+            if (amountStr === "") {
+                alert("Please enter an amount.");
+                amountInput.focus();
+                return;
+            }
+
+            const amount = parseFloat(amountStr);
+
+            if (isNaN(amount) || amount <= 0) {
+                alert("Please enter a valid positive number.");
+                amountInput.value = "";
+                amountInput.focus();
+                return;
+            }
+
+            // 2. Perform operation
+            if (type === 'credit') {
+                accountBalance += amount;
+                // Basic check for very large number formatting for demo purposes
+                if (accountBalance > 9999999999) {
+                    alert("Demo balance is too high! For larger numbers we need to look into scientific notation handling.");
+                    accountBalance -= amount; // revert for demo.
+                }
+            } else if (type === 'debit') {
+                if (amount > accountBalance) {
+                    alert("Insufficient funds for this transaction.");
+                    amountInput.value = "";
+                    amountInput.focus();
+                    return; // Prevent transaction
+                }
+                accountBalance -= amount;
+            }
+
+            // 3. Update UI
+            updateBalanceDisplay();
+            amountInput.value = ""; // Clear input field
+            amountInput.focus();   // Focus back for next input
+        }
+
+        // Event Listeners
+        creditBtn.addEventListener('click', () => handleTransaction('credit'));
+        debitBtn.addEventListener('click', () => handleTransaction('debit'));
+
+        // Handle 'Enter' key press on the input field as a credit shortcut
+        amountInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                handleTransaction('credit');
+            }
+        });
+
+        // Initialize display
+        updateBalanceDisplay();
+        amountInput.focus(); // Initial focus
+
+    </script>
 </body>
-<script src="script.js"></script>
+
 </html>
